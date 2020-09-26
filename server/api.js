@@ -70,4 +70,18 @@ apiRouter.delete('/ideas/:ideaId', (req, res, next) => {
   res.status(204).send();
 });
 
+apiRouter.get('/meetings', (req, res, next) => {
+  res.send(db.getAllFromDatabase('meetings'));
+});
+
+apiRouter.post('/meetings', (req, res, next) => {
+  meeting = db.addToDatabase('meetings', db.createMeeting());
+  res.status(201).send(meeting);
+});
+
+apiRouter.delete('/meetings', (req, res, next) => {
+  db.deleteAllFromDatabase('meetings');
+  res.status(204).send();
+});
+
 module.exports = apiRouter;
